@@ -6,7 +6,7 @@ services:
     image: 'flyimg/flyimg:1.8.1'   # pinned for stability
     container_name: flyimg
     ports:
-      - '8081:80'                  # keep if you want host port; Coolify may proxy instead
+      - '8082:80'                  # keep if you want host port; Coolify may proxy instead
     volumes:
       - './data/in:/work/in'
       - './data/out:/work/out'
