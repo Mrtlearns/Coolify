@@ -1,13 +1,27 @@
-# Version: 1.0 — base compose (single-source-of-truth)
+# Merged docker-compose (override already applied)
 version: '3.8'
 
 services:
   flyimg:
-    image: 'flyimg/flyimg:1.8.1'            # pinned for stability
+    image: 'flyimg/flyimg:1.8.1'   # pinned for stability
     container_name: flyimg
     ports:
-      - '8082:80'                           # optional; Coolify may proxy instead
+      - '8081:80'                  # keep if you want host port; Coolify may proxy instead
     volumes:
       - './data/in:/work/in'
       - './data/out:/work/out'
+
+      # application config (mount your repo config file into the container)
+      - './config/parameters.yml:/var/www/html/config/parameters.yml:ro'
+
+      # custom nginx config to allow larger uploads (client_max_body_size etc)
+      - './nginx-config/flyimage.conf:/etc/nginx/conf.d/flyimage.conf:ro'
+
+      # optional: override php.ini if you need bigger post/upload limits
+      # uncomment & adjust path if you create ./php/php.ini
+      # - './php/php.ini:/usr/local/etc/php/php.ini:ro'
+
     restart: unless-stopped
+    # optional environment variables (if needed)
+    # environment:
+    #   - SOME_ENV=foo
