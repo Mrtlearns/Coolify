@@ -12,10 +12,10 @@ services:
       - './data/out:/work/out'
 
       # application config (mount your repo config file into the container)
-      - './config/parameters.yml:/var/www/html/config/parameters.yml:ro'
+      #- './config/parameters.yml:/var/www/html/config/parameters.yml:ro'
 
       # custom nginx config to allow larger uploads (client_max_body_size etc)
-      - './nginx-config/flyimage.conf:/etc/nginx/conf.d/flyimage.conf:ro'
+      #- './nginx-config/flyimage.conf:/etc/nginx/conf.d/flyimage.conf:ro'
 
       # optional: override php.ini if you need bigger post/upload limits
       # uncomment & adjust path if you create ./php/php.ini
