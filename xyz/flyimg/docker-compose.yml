@@ -1,0 +1,13 @@
+# Version: 1.0 — base compose (single-source-of-truth)
+version: '3.8'
+
+services:
+  flyimg:
+    image: 'flyimg/flyimg:1.8.1'            # pinned for stability
+    container_name: flyimg
+    ports:
+      - '8082:80'                           # optional; Coolify may proxy instead
+    volumes:
+      - './data/in:/work/in'
+      - './data/out:/work/out'
+    restart: unless-stopped

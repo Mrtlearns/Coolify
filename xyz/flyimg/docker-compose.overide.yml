@@ -1,0 +1,15 @@
+# Version: 1.0 — override: mounts for custom nginx + app config
+version: '3.8'
+
+services:
+  flyimg:
+    image: 'flyimg/flyimg:1.8.1'
+    volumes:
+      # Mount your custom nginx site config (read-only)
+      - './nginx-config/flyimage.conf:/etc/nginx/conf.d/flyimage.conf:ro'
+
+      # Mount an optional full nginx.conf if you need to override main config:
+      # - './nginx-config/nginx.conf:/etc/nginx/nginx.conf:ro'
+
+      # Mount app parameters (read-only). Adjust target path if your app uses different path.
+      - './config/parameters.yml:/var/www/html/config/parameters.yml:ro'
