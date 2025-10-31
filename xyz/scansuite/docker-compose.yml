@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  preprocess-service:
+    build:
+      context: ./preprocess-service
+      dockerfile: Dockerfile
+    image: scansuite/preprocess-service:latest
+    restart: unless-stopped
+    environment:
+      - PREPROCESS_DPI=300
+      - PREPROCESS_GRAY=true
+    volumes:
+      - receipts_data:/data/receipts
+    networks:
+      - scansuite_net
+    ports:
+      - "8001:8000"
+
+  ocr-service:
+    build:
+      context: ./ocr-service
+      dockerfile: Dockerfile
+    image: scansuite/ocr-service:latest
+    restart: unless-stopped
+    environment:
+      - OCR_LANG=eng
+    volumes:
+      - receipts_data:/data/receipts
+    networks:
+      - scansuite_net
+    ports:
+      - "8002:8000"
+
+  compose-service:
+    build:
+      context: ./compose-service
+      dockerfile: Dockerfile
+    image: scansuite/compose-service:latest
+    restart: unless-stopped
+    environment:
+      - COMPOSE_PAGE_DPI=300
+      - COMPOSE_MARGIN_MM=10
+    volumes:
+      - receipts_data:/data/receipts
+      - output_pdfs:/data/output
+    networks:
+      - scansuite_net
+    ports:
+      - "8003:8000"
+
+volumes:
+  receipts_data:
+  output_pdfs:
+
+networks:
+  scansuite_net:
+    driver: bridge
