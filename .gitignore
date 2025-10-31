@@ -1,0 +1,73 @@
+# Test folders and artifacts
+xyz/scansuite/Test/
+xyz/scansuite/processed_receipt*.jpg
+xyz/scansuite/test_result*.json
+xyz/scansuite/analyze_receipt.py
+xyz/scansuite/analyze_result.py
+xyz/scansuite/extract_image.py
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker
+.dockerignore
+volumes/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Node modules (if applicable)
+node_modules/
+npm-debug.log
+
+# OS
+Thumbs.db
+*.tmp
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.bak
+*.tmp
+*~
